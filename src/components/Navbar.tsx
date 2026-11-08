@@ -7,6 +7,7 @@ import { navLinks, whatsappLink } from "@/config/site";
 import { Logo } from "./ui/Logo";
 import { WhatsAppIcon } from "./ui/icons";
 import { getLenis } from "./SmoothScroll";
+import { AnnouncementBar } from "./AnnouncementBar";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -32,14 +33,22 @@ export function Navbar() {
   }, [open]);
 
   return (
+    <>
     <header
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color,padding] duration-700 ease-[var(--ease-cinematic)]",
-        scrolled && !open ? "border-b border-bone/[0.06] bg-ink/70 py-3 backdrop-blur-xl" : "border-b border-transparent py-5 sm:py-6",
+        "fixed inset-x-0 top-0 z-50 transition-transform duration-700 ease-[var(--ease-cinematic)]",
+        scrolled && !open ? "-translate-y-8" : "translate-y-0",
       )}
     >
-      <nav className="container-x flex items-center justify-between" aria-label="Main">
-        <a href="#top" className="relative z-10 text-bone" aria-label="Crazy Shine — home" onClick={() => setOpen(false)}>
+      <AnnouncementBar />
+      <div
+        className={clsx(
+          "transition-[background-color,backdrop-filter,border-color,padding] duration-700 ease-[var(--ease-cinematic)]",
+          scrolled && !open ? "border-b border-bone/[0.06] bg-ink/75 py-3 backdrop-blur-xl" : "border-b border-transparent py-4 sm:py-5",
+        )}
+      >
+      <nav className="container-x flex items-center justify-between" aria-label="Principal">
+        <a href="#inicio" className="relative z-10 text-bone" aria-label="Crazy Shine — inicio" onClick={() => setOpen(false)}>
           <Logo />
         </a>
 
@@ -51,7 +60,7 @@ export function Navbar() {
                 className="group relative text-[0.72rem] font-medium uppercase tracking-[0.22em] text-bone/75 transition-colors hover:text-bone"
               >
                 {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-volt transition-transform duration-500 ease-[var(--ease-cinematic)] group-hover:scale-x-100" />
+                <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-bone transition-transform duration-500 ease-[var(--ease-cinematic)] group-hover:scale-x-100" />
               </a>
             </li>
           ))}
@@ -62,10 +71,10 @@ export function Navbar() {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2.5 bg-volt px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:bg-bone sm:inline-flex"
+            className="shine hidden items-center gap-2.5 bg-chrome px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:bg-bone sm:inline-flex"
           >
             <WhatsAppIcon className="h-3.5 w-3.5" />
-            Book Now
+            Reservar
           </a>
           <button
             type="button"
@@ -73,7 +82,7 @@ export function Navbar() {
             className="grid h-11 w-11 place-items-center border border-bone/20 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
           >
             <span className="relative block h-3 w-5">
               <span className={clsx("absolute left-0 h-px w-5 bg-bone transition-all duration-500", open ? "top-1.5 rotate-45" : "top-0")} />
@@ -82,32 +91,34 @@ export function Navbar() {
           </button>
         </div>
       </nav>
+      </div>
 
+    </header>
       <AnimatePresence>
         {open && (
           <motion.div
             id="mobile-menu"
-            className="fixed inset-0 z-0 flex flex-col bg-ink lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-ink lg:hidden"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.8, ease }}
           >
             <div className="container-x flex flex-1 flex-col justify-center pt-24">
-              <p className="label mb-8 text-metal">Menu</p>
+              <p className="label mb-8 text-metal">Menú</p>
               <ul className="space-y-1">
                 {navLinks.map((link, i) => (
                   <li key={link.href} className="overflow-hidden">
                     <motion.a
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="display flex items-baseline gap-4 py-1 text-[clamp(3rem,13vw,5.5rem)] text-bone transition-colors hover:text-volt"
+                      className="display flex items-baseline gap-4 py-1 text-[clamp(3rem,13vw,5.5rem)] text-bone transition-colors hover:text-silver"
                       initial={{ y: "100%" }}
                       animate={{ y: "0%" }}
                       exit={{ y: "100%" }}
                       transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.06 }}
                     >
-                      <span className="font-mono text-xs tracking-normal text-volt">0{i + 1}</span>
+                      <span className="font-mono text-xs tracking-normal text-metal">0{i + 1}</span>
                       {link.label}
                     </motion.a>
                   </li>
@@ -120,19 +131,19 @@ export function Navbar() {
               animate={{ opacity: 1, transition: { delay: 0.5 } }}
               exit={{ opacity: 0 }}
             >
-              <span className="label text-metal">Automotive Detailing</span>
+              <span className="label text-metal">Detailing automotriz</span>
               <a
                 href={whatsappLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-volt px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink"
+                className="inline-flex items-center gap-2.5 bg-chrome px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink"
               >
-                <WhatsAppIcon className="h-3.5 w-3.5" /> Book Now
+                <WhatsAppIcon className="h-3.5 w-3.5" /> Reservar
               </a>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

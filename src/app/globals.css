@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
+/* ─── Crazy Shine design tokens ─────────────────────────────── */
 @theme {
   --color-ink: #080808;
   --color-graphite: #111111;
-  --color-carbon: #1a1a1a;
+  --color-carbon: #171717;
+  --color-steel: #262626;
   --color-bone: #f5f5f5;
-  --color-metal: #858585;
-  --color-volt: #ff5a1f;
-  --color-volt-deep: #e2470f;
+  --color-metal: #929292;
+  --color-silver: #c9ced4;
+  --color-chrome: #e4e7eb;
+  --color-chrome-deep: #9aa1a8;
+  --color-whatsapp: #25d366;
 
   --font-display: var(--font-display-face), "Arial Narrow", sans-serif;
   --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
@@ -20,6 +24,7 @@
 :root {
   color-scheme: dark;
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --chrome-gradient: linear-gradient(180deg, #ffffff 0%, #d7dbe0 38%, #8c939a 52%, #e9ecef 70%, #b7bdc3 100%);
 }
 
 html {
@@ -27,7 +32,6 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 5rem;
 }
-
 html.lenis,
 html.lenis body {
   height: auto;
@@ -46,12 +50,11 @@ body {
 }
 
 ::selection {
-  background: var(--color-volt);
+  background: var(--color-chrome);
   color: var(--color-ink);
 }
-
 :focus-visible {
-  outline: 2px solid var(--color-volt);
+  outline: 2px solid var(--color-chrome);
   outline-offset: 3px;
 }
 
@@ -64,14 +67,30 @@ body {
   }
   .display {
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 400;
     text-transform: uppercase;
-    line-height: 0.86;
-    letter-spacing: -0.01em;
+    line-height: 0.9;
   }
   .text-outline {
     color: transparent;
     -webkit-text-stroke: 1px rgba(245, 245, 245, 0.55);
+  }
+  /* White fill that falls off like light on paint */
+  .text-fade {
+    background: linear-gradient(180deg, #fff 35%, rgba(255, 255, 255, 0.5) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Polished chrome — the brand's accent */
+  .text-chrome {
+    background: var(--chrome-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-chrome-gradient {
+    background: var(--chrome-gradient);
   }
   .container-x {
     width: 100%;
@@ -93,11 +112,11 @@ body {
 
 .grain {
   background-image: var(--grain);
-  opacity: 0.07;
+  opacity: 0.06;
   mix-blend-mode: overlay;
 }
 
-/* ── Studio render ─────────────────────────────── */
+/* Studio render (fallback when a photo is missing) */
 .studio-sweep {
   animation: studio-sweep 7s var(--ease-cinematic) infinite;
 }
@@ -124,13 +143,54 @@ body {
   mix-blend-mode: multiply;
   opacity: 0.9;
 }
+/* "Antes" simulation for photos until a real before-photo is uploaded */
+.photo-dull {
+  filter: saturate(0.35) brightness(0.7) contrast(0.82) blur(0.6px);
+}
 
-/* Hide scrollbars on horizontal rails while keeping them scrollable */
+/* Chrome shine sweep on hover (buttons, tiles) */
+.shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: -50% auto -50% -60%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg) translateX(0);
+  transition: transform 0.9s var(--ease-cinematic);
+  pointer-events: none;
+  z-index: 1;
+}
+.shine:hover::after {
+  transform: skewX(-20deg) translateX(420%);
+}
+
 .no-scrollbar {
   scrollbar-width: none;
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes scrollcue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -144,23 +204,5 @@ body {
   }
   .studio-sweep {
     display: none;
-  }
-}
-
-@keyframes scrollcue {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(200%);
-  }
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
   }
 }

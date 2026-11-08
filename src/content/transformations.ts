@@ -4,38 +4,43 @@ export interface Transformation {
   id: string;
   title: string;
   caption: string;
-  /** If `before.src` / `after.src` are missing, the studio render is shown with a simulated dull/clean state. */
+  /**
+   * Sube la foto real del "antes" como `before.src`. Mientras sea la misma foto que `after.src`,
+   * el slider aplica una simulación visual y lo indica en pantalla.
+   */
   before: Visual;
   after: Visual;
 }
 
+const photo = (src: string, alt: string, focus = "50% 50%"): Visual => ({ tone: "graphite", src, alt, focus });
+
 export const transformations: Transformation[] = [
   {
-    id: "paint",
-    title: "Paint",
-    caption: "Oxidised, dull paint → deep, reflective gloss.",
-    before: { tone: "ember", silhouette: "classic", alt: "Dull, oxidised paint before detailing" },
-    after: { tone: "ember", silhouette: "classic", alt: "Glossy paint after detailing" },
+    id: "pintura",
+    title: "Pintura",
+    caption: "Pintura opaca y sin vida → brillo profundo con reflejo.",
+    before: photo("/images/services/paint-correction.jpg", "Pintura antes de la corrección"),
+    after: photo("/images/services/paint-correction.jpg", "Pintura después de la corrección"),
   },
   {
     id: "interior",
     title: "Interior",
-    caption: "Stained upholstery → restored, clean cabin.",
-    before: { tone: "ivory", silhouette: "suv", alt: "Dirty interior before deep clean" },
-    after: { tone: "ivory", silhouette: "suv", alt: "Restored interior after deep clean" },
+    caption: "Cabina con polvo y manchas → interior restaurado.",
+    before: photo("/images/services/interior.jpg", "Interior antes de la limpieza"),
+    after: photo("/images/services/interior.jpg", "Interior después de la limpieza"),
   },
   {
-    id: "wheels",
-    title: "Wheels",
-    caption: "Brake-dust contaminated rims → clean, protected wheels.",
-    before: { tone: "steel", silhouette: "coupe", alt: "Contaminated wheels before cleaning" },
-    after: { tone: "steel", silhouette: "coupe", alt: "Clean wheels after detailing" },
+    id: "llantas",
+    title: "Llantas",
+    caption: "Rines contaminados con polvo de freno → llantas limpias y protegidas.",
+    before: photo("/images/services/premium-wash.jpg", "Llanta antes de la limpieza"),
+    after: photo("/images/services/premium-wash.jpg", "Llanta después de la limpieza"),
   },
   {
-    id: "full",
-    title: "Full Car",
-    caption: "Before the detail → after Crazy Shine.",
-    before: { tone: "graphite", silhouette: "muscle", alt: "Car before full detailing" },
-    after: { tone: "graphite", silhouette: "muscle", alt: "Car after full detailing" },
+    id: "carro-completo",
+    title: "Carro completo",
+    caption: "Antes del detailing → después de Crazy Shine.",
+    before: photo("/images/editorial/mustang-black.jpg", "Carro antes del detailing", "50% 60%"),
+    after: photo("/images/editorial/mustang-black.jpg", "Carro después del detailing", "50% 60%"),
   },
 ];

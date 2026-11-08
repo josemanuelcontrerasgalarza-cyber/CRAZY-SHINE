@@ -1,68 +1,46 @@
 import type { Visual } from "./types";
 
 /**
- * ─────────────────────────────────────────────────────────────
- *  PHOTOGRAPHY
- * ─────────────────────────────────────────────────────────────
- * Drop authentic Crazy Shine photography into /public/images/** and
- * set the `src` of each slot. Recommended: 2400px wide JPG/WebP,
- * dark & contrasted, no watermarks. Until a `src` is set, a studio
- * render is displayed (it never pretends to be a real job).
+ * FOTOGRAFÍA
+ * Fotos de referencia (Licencia Unsplash / Wikimedia Commons — ver public/images/CREDITS.md).
+ * Para usar fotos propias, súbelas a public/images/** con el mismo nombre.
  */
 
-export const heroSlides: (Visual & { model: string; label: string })[] = [
+/** Protagonista del hero. Sube tu foto del Mustang GT 2021 como public/images/hero/mustang-gt-2021.jpg. */
+export const heroVisual: Visual & { model: string; detail: string } = {
+  model: "Ford Mustang GT",
+  detail: "Lavado premium",
+  tone: "graphite",
+  src: "/images/hero/mustang-gt-2021.jpg",
+  fallbackSrc: "/images/hero/mustang-wash.jpg",
+  alt: "Ford Mustang GT blanco dentro de una bahía de lavado con vapor",
+  focus: "62% 55%",
+};
+
+export const essenceVisuals: Visual[] = [
   {
-    model: "Ford Mustang GT 2021",
-    label: "Full Detail",
     tone: "graphite",
-    silhouette: "muscle",
-    alt: "Black Ford Mustang GT under studio lights after a full detail",
-    // src: "/images/hero/mustang-gt-2021.jpg",
+    src: "/images/editorial/mustang-tunnel.jpg",
+    alt: "Ford Mustang blanco con franjas en un túnel oscuro",
+    focus: "45% 60%",
   },
   {
-    model: "Porsche 911",
-    label: "Paint Correction",
-    tone: "steel",
-    silhouette: "coupe",
-    alt: "Porsche 911 with mirror-finish paint under studio lighting",
-    // src: "/images/hero/porsche-911.jpg",
-  },
-  {
-    model: "Renault 12",
-    label: "Classic Care",
     tone: "ember",
-    silhouette: "classic",
-    alt: "Orange classic Renault 12 with restored paint shine",
-    // src: "/images/hero/renault-12.jpg",
+    src: "/images/editorial/paint-reflection.jpg",
+    alt: "Macro de pintura roja brillante reflejando un patrón de luz junto al faro",
+    focus: "40% 50%",
   },
   {
-    model: "BMW M",
-    label: "Premium Wash",
-    tone: "midnight",
-    silhouette: "sedan",
-    alt: "BMW M sedan covered in snow foam during a premium wash",
-    // src: "/images/hero/bmw-m.jpg",
-  },
-  {
-    model: "Mercedes-AMG",
-    label: "Paint Protection",
-    tone: "ivory",
-    silhouette: "gt",
-    alt: "Mercedes-AMG coupe with protected, glossy paint",
-    // src: "/images/hero/mercedes-amg.jpg",
+    tone: "steel",
+    src: "/images/hero/mercedes-amg-gtr.jpg",
+    alt: "Mercedes-AMG GT R gris con calipers amarillos",
+    focus: "55% 60%",
   },
 ];
 
-export const editorialVisual: Visual = {
-  tone: "ember",
-  silhouette: "coupe",
-  alt: "Macro of glossy automotive paint reflecting studio light bars",
-  // src: "/images/editorial/paint-macro.jpg",
-};
-
-export const finalCtaVisual: Visual = {
+export const contactVisual: Visual = {
   tone: "graphite",
-  silhouette: "muscle",
-  alt: "Black Ford Mustang GT under cinematic lighting",
-  // src: "/images/editorial/mustang-cinematic.jpg",
+  src: "/images/editorial/mustang-black.jpg",
+  alt: "Ford Mustang negro al atardecer",
+  focus: "50% 60%",
 };

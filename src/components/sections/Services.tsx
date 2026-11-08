@@ -1,153 +1,125 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import clsx from "clsx";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { services } from "@/content/services";
 import { serviceMessage, whatsappLink } from "@/config/site";
 import { Media } from "../ui/Media";
-import { MaskedHeadline, Reveal } from "../ui/Reveal";
-import { Cta } from "../ui/Cta";
+import { MaskedHeadline } from "../ui/Reveal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-export function Services() {
-  const [active, setActive] = useState(0);
-  const current = services[active];
+// Ritmo editorial asimétrico: ancho/angosto, angosto/ancho, tercio/dos tercios.
+const layout = [
+  "lg:col-span-7 lg:h-[40rem]",
+  "lg:col-span-5 lg:h-[40rem]",
+  "lg:col-span-5 lg:h-[34rem]",
+  "lg:col-span-7 lg:h-[34rem]",
+  "lg:col-span-4 lg:h-[38rem]",
+  "lg:col-span-8 lg:h-[38rem]",
+];
 
+export function Services() {
   return (
-    <section id="services" className="relative bg-graphite py-28 sm:py-40" aria-labelledby="services-title">
+    <section id="servicios" className="relative bg-ink py-28 sm:py-36" aria-labelledby="servicios-title">
       <div className="container-x">
-        <div className="mb-16 flex flex-col gap-10 sm:mb-24 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-12 flex flex-col gap-8 sm:mb-16 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="label mb-8 text-metal">
-              <span className="text-volt">(02)</span> Our services
-            </p>
+            <p className="label mb-6 text-metal">(01) — Seis disciplinas, un estándar</p>
             <MaskedHeadline
-              className="display text-[clamp(3rem,9vw,8.5rem)] text-bone"
+              as="h2"
+              id="servicios-title"
+              className="display text-[clamp(3.2rem,9vw,8.5rem)] text-bone"
               lines={[
-                "The Crazy Shine",
-                <>
-                  experience<span className="text-volt">.</span>
-                </>,
+                "Nuestros",
+                <span key="o" className="text-outline">
+                  servicios.
+                </span>,
               ]}
             />
-            <span id="services-title" className="sr-only">
-              The Crazy Shine experience
-            </span>
           </div>
-          <Reveal className="max-w-sm">
-            <p className="leading-relaxed text-metal">
-              Six disciplines, one standard. Every quote is tailored to your vehicle&apos;s size and condition — ask us on
-              WhatsApp.
-            </p>
-          </Reveal>
+          <a
+            href={whatsappLink("Hola Crazy Shine, quiero una cotización para mi vehículo.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="label group inline-flex items-center gap-3 text-bone transition-colors hover:text-silver"
+          >
+            Cotiza por WhatsApp
+            <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+          </a>
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-12">
-          {/* Sticky preview — desktop */}
-          <div className="hidden lg:col-span-6 lg:block">
-            <div className="sticky top-28">
-              <div className="relative aspect-[5/4] overflow-hidden bg-ink">
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    key={current.id}
-                    className="absolute inset-0"
-                    initial={{ clipPath: "inset(0 0 0 100%)" }}
-                    animate={{ clipPath: "inset(0 0 0 0%)" }}
-                    exit={{ opacity: 0, transition: { duration: 0.6, delay: 0.3 } }}
-                    transition={{ duration: 0.9, ease }}
-                  >
-                    <Media visual={current.visual} sizes="(min-width: 1024px) 45vw, 100vw" />
-                  </motion.div>
-                </AnimatePresence>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
-                <span className="display pointer-events-none absolute -bottom-4 right-4 text-[11rem] text-bone/10">{current.number}</span>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="label text-volt">Includes</p>
-                  <ul className="mt-3 flex flex-wrap gap-2">
-                    {current.includes.map((item) => (
-                      <li key={item} className="border border-bone/20 bg-ink/40 px-3 py-1.5 text-xs text-bone/85 backdrop-blur">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Service list */}
-          <ol className="lg:col-span-6 lg:pl-6">
-            {services.map((service, i) => (
-              <motion.li
-                key={service.id}
-                className="border-t border-bone/10 last:border-b"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-                transition={{ duration: 0.9, ease, delay: i * 0.05 }}
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-12">
+          {services.map((service, i) => (
+            <motion.li
+              key={service.id}
+              id={service.id}
+              className={clsx(layout[i], (i === 0 || i === 5) && "sm:col-span-2")}
+              initial={{ opacity: 0, y: 48 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+              transition={{ duration: 1.1, ease, delay: (i % 2) * 0.1 }}
+            >
+              <a
+                href={whatsappLink(serviceMessage(service.name))}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block aspect-[4/5] h-full overflow-hidden bg-graphite sm:aspect-[4/3] lg:aspect-auto"
               >
-                <article
-                  id={service.id}
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  className="group relative py-8 sm:py-10"
+                <motion.div
+                  className="absolute inset-0"
+                  initial={{ clipPath: "inset(0 0 100% 0)" }}
+                  whileInView={{ clipPath: "inset(0 0 0% 0)" }}
+                  viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                  transition={{ duration: 1.3, ease }}
                 >
-                  {/* Mobile visual */}
-                  <div className="relative mb-6 aspect-[16/10] overflow-hidden bg-ink lg:hidden">
-                    <Media visual={service.visual} sizes="100vw" />
-                    <span className="display absolute -bottom-2 right-3 text-7xl text-bone/15">{service.number}</span>
+                  <div className="absolute inset-0 transition-transform duration-[1.6s] ease-[var(--ease-cinematic)] group-hover:scale-[1.06]">
+                    <Media visual={service.visual} sizes="(min-width: 1024px) 60vw, (min-width: 640px) 50vw, 100vw" />
                   </div>
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-ink/10" />
+                <div className="absolute inset-0 bg-ink/0 transition-colors duration-700 group-hover:bg-ink/35" />
 
-                  <div className="flex items-start gap-5 sm:gap-8">
-                    <span
-                      className={clsx(
-                        "mt-2 font-mono text-xs transition-colors duration-500",
-                        active === i ? "text-volt" : "text-metal",
-                      )}
-                    >
-                      {service.number} —
-                    </span>
-                    <div className="flex-1">
-                      <h3
-                        className={clsx(
-                          "display text-[clamp(2rem,4.4vw,3.6rem)] transition-[color,transform] duration-700 ease-[var(--ease-cinematic)]",
-                          active === i ? "text-bone lg:translate-x-2" : "text-bone/45",
-                        )}
-                      >
-                        {service.name}
-                      </h3>
-                      <p className="mt-4 max-w-md leading-relaxed text-metal">{service.summary}</p>
-                      <a
-                        href={whatsappLink(serviceMessage(service.name))}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Discover ${service.name} — ask on WhatsApp`}
-                        className="mt-6 inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-bone transition-colors hover:text-volt"
-                      >
-                        Discover service
-                        <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
-                      </a>
+                {/* Palabra de identidad */}
+                <span
+                  aria-hidden="true"
+                  className="display text-outline pointer-events-none absolute -right-2 top-14 select-none text-[clamp(4rem,9vw,9.5rem)] opacity-50 transition-all duration-1000 ease-[var(--ease-cinematic)] group-hover:-translate-x-4 group-hover:opacity-90"
+                >
+                  {service.keyword}
+                </span>
+
+                <span className="absolute left-5 top-5 bg-bone px-2.5 py-1.5 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-ink sm:left-7 sm:top-7">
+                  {service.number} — Servicio
+                </span>
+
+                <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-6 sm:inset-x-7 sm:bottom-7">
+                  <div className="min-w-0">
+                    <h3 className="display max-w-[14ch] text-[clamp(2.3rem,4.2vw,4.2rem)] text-bone">{service.name}</h3>
+                    <div className="grid transition-[grid-template-rows,opacity] duration-700 ease-[var(--ease-cinematic)] [grid-template-rows:1fr] lg:opacity-0 lg:[grid-template-rows:0fr] lg:group-hover:opacity-100 lg:group-hover:[grid-template-rows:1fr] lg:group-focus-visible:opacity-100 lg:group-focus-visible:[grid-template-rows:1fr]">
+                      <div className="overflow-hidden">
+                        <p className="mt-3 max-w-md text-sm leading-relaxed text-bone/80">{service.summary}</p>
+                        <ul className="mt-4 flex flex-wrap gap-2">
+                          {service.includes.map((item) => (
+                            <li key={item} className="border border-bone/25 px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-bone/80">
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <span
-                    className={clsx(
-                      "absolute left-0 top-[-1px] h-px bg-volt transition-[width] duration-700 ease-[var(--ease-cinematic)]",
-                      active === i ? "w-full" : "w-0",
-                    )}
-                  />
-                </article>
-              </motion.li>
-            ))}
-          </ol>
-        </div>
+                  <span className="grid h-11 w-11 shrink-0 place-items-center border border-bone/30 text-bone transition-all duration-500 group-hover:rotate-45 group-hover:border-chrome group-hover:bg-chrome group-hover:text-ink">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </div>
+                <span className="sr-only">Consultar {service.name} por WhatsApp</span>
+              </a>
+            </motion.li>
+          ))}
+        </ul>
 
-        <Reveal className="mt-16 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <p className="label text-metal">Prices on request — every car is different.</p>
-          <Cta whatsapp="Hola Crazy Shine, quiero una cotización para mi vehículo.">Request a quote</Cta>
-        </Reveal>
+        <p className="label mt-8 text-metal">Sin precios publicados: cada vehículo es distinto. La cotización es por WhatsApp.</p>
       </div>
     </section>
   );

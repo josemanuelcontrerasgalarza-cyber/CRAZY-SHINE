@@ -1,80 +1,73 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { heroSlides } from "@/content/media";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { heroVisual } from "@/content/media";
+import { whatsappLink } from "@/config/site";
 import { Media } from "../ui/Media";
 import { MaskedHeadline } from "../ui/Reveal";
 import { Cta } from "../ui/Cta";
 
 const ease = [0.16, 1, 0.3, 1] as const;
-const INTERVAL = 6500;
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    if (reduce) return;
-    const id = window.setInterval(() => setIndex((i) => (i + 1) % heroSlides.length), INTERVAL);
-    return () => window.clearInterval(id);
-  }, [reduce]);
-
-  // Cinematic scroll-out: the frame pushes in and darkens while the type drifts up.
+  // Salida cinematográfica: la foto se acerca y oscurece mientras el texto sube.
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.18]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.15]);
   const shade = useTransform(scrollYProgress, [0, 0.9], [0, 0.85]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "-35%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "-28%"]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
-  const slide = heroSlides[index];
-
   return (
-    <section ref={ref} id="top" className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink" aria-label="Crazy Shine">
+    <section ref={ref} id="inicio" className="relative h-[100svh] min-h-[700px] w-full overflow-hidden bg-ink" aria-labelledby="hero-title">
       <motion.div className="absolute inset-0" style={{ scale }}>
-        <AnimatePresence initial={false} mode="sync">
-          <motion.div
-            key={index}
-            className="absolute inset-0"
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ opacity: { duration: 1.6, ease }, scale: { duration: INTERVAL / 1000 + 1.6, ease: "linear" } }}
-          >
-            <Media visual={slide} sizes="100vw" priority={index === 0} fit="bleed" />
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          className="absolute inset-0"
+          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.12 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ opacity: { duration: 1.4, ease }, scale: { duration: 2.6, ease } }}
+        >
+          <Media visual={heroVisual} sizes="100vw" priority fit="bleed" />
+        </motion.div>
       </motion.div>
 
-      {/* Legibility grading */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/10 to-ink" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/5 to-ink" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
+      <div className="grain pointer-events-none absolute inset-0" />
       <motion.div className="pointer-events-none absolute inset-0 bg-ink" style={{ opacity: shade }} />
 
       <motion.div className="container-x relative z-10 flex h-full flex-col justify-end pb-28 sm:pb-24" style={{ y: textY, opacity: textOpacity }}>
         <motion.p
-          className="label mb-6 flex items-center gap-3 text-bone/70"
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
+          className="label mb-6 inline-flex w-fit items-center gap-2.5 border border-bone/15 bg-ink/50 px-3 py-2 text-[0.62rem] text-bone/85"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease, delay: 0.2 }}
         >
-          <span className="h-px w-10 bg-volt" />
-          Automotive Detailing / Est. Crazy Shine
+          <span className="h-1.5 w-1.5 rotate-45 bg-silver" />
+          Crazy Shine — Detailing automotriz
         </motion.p>
 
         <MaskedHeadline
           as="h1"
           immediate
           delay={0.03}
-          className="display text-[clamp(3.6rem,13.5vw,13rem)] text-bone"
+          className="display max-w-[16ch] text-[clamp(2.9rem,8.6vw,10.5rem)]"
           lines={[
-            "Your car.",
-            <>
-              Our <span className="text-volt">obsession.</span>
-            </>,
+            <span key="a" className="text-fade">
+              No es solo limpiar.
+            </span>,
+            <span key="b" className="text-chrome">
+              Es hacerlo brillar.
+            </span>,
           ]}
         />
+        <span id="hero-title" className="sr-only">
+          No es solo limpiar. Es hacerlo brillar.
+        </span>
 
         <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <motion.p
@@ -83,9 +76,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease, delay: 0.7 }}
           >
-            We don&apos;t just clean cars.
-            <br />
-            We bring their shine back.
+            Detailing profesional. Cuidado obsesivo. Brillo que transforma.
           </motion.p>
 
           <motion.div
@@ -94,60 +85,47 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease, delay: 0.85 }}
           >
-            <Cta whatsapp>Book your detail</Cta>
-            <Cta href="#work" variant="ghost">
-              Explore our work
+            <Cta whatsapp="Hola Crazy Shine, quiero reservar un servicio para mi vehículo.">Reservar servicio</Cta>
+            <Cta href="#esencia" variant="ghost">
+              Descubrir Crazy Shine
             </Cta>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Floating slide meta */}
-      <div className="absolute right-4 top-28 z-10 hidden text-right sm:right-8 md:block lg:right-14">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <p className="label text-volt">{slide.label}</p>
-            <p className="mt-2 font-display text-2xl font-bold uppercase tracking-wide text-bone">{slide.model}</p>
-          </motion.div>
-        </AnimatePresence>
-        <div className="mt-5 flex justify-end gap-1.5" role="tablist" aria-label="Featured vehicles">
-          {heroSlides.map((s, i) => (
-            <button
-              key={s.model}
-              type="button"
-              role="tab"
-              aria-selected={i === index}
-              aria-label={s.model}
-              onClick={() => setIndex(i)}
-              className="group relative h-6 w-8"
-            >
-              <span className="absolute inset-x-0 top-1/2 h-px bg-bone/25" />
-              <span
-                className={`absolute left-0 top-1/2 h-px bg-bone ${i === index ? "w-full transition-[width] ease-linear" : "w-0"}`}
-                style={i === index && !reduce ? { transitionDuration: `${INTERVAL}ms` } : undefined}
-              />
-            </button>
-          ))}
-        </div>
-      </div>
+      {/* Ficha flotante del protagonista */}
+      <motion.a
+        href={whatsappLink(`Hola Crazy Shine, quiero información sobre el ${heroVisual.detail.toLowerCase()} para mi vehículo.`)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group absolute right-4 top-32 z-10 hidden w-72 items-center gap-3 border border-bone/10 bg-ink/60 p-3 transition-colors hover:border-silver/60 sm:right-8 md:flex lg:right-14"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease, delay: 1 }}
+      >
+        <span className="min-w-0 flex-1">
+          <span className="label block text-[0.58rem] text-metal">Protagonista — {heroVisual.detail}</span>
+          <span className="mt-1.5 block font-display text-xl uppercase leading-none text-bone">{heroVisual.model}</span>
+        </span>
+        <span className="grid h-10 w-10 shrink-0 place-items-center bg-chrome text-ink transition-transform duration-500 group-hover:rotate-45">
+          <ArrowUpRight className="h-4 w-4" />
+        </span>
+        <span className="sr-only">(abre WhatsApp)</span>
+      </motion.a>
+
+      <p className="label pointer-events-none absolute right-6 top-1/2 z-10 hidden origin-right -translate-y-1/2 translate-x-[calc(50%-0.75rem)] rotate-90 text-[0.58rem] text-bone/55 xl:block">
+        Precisión en cada detalle — Desde Colombia
+      </p>
 
       <div className="absolute inset-x-0 bottom-0 z-10">
         <div className="container-x flex items-center justify-between border-t border-bone/10 py-5">
-          <a href="#about" className="label group flex items-center gap-3 text-bone/60 transition-colors hover:text-bone">
+          <a href="#servicios" className="label flex items-center gap-3 text-bone/65 transition-colors hover:text-bone">
             <span className="relative block h-8 w-px overflow-hidden bg-bone/20">
-              <span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_2s_ease-in-out_infinite] bg-volt" />
+              <span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_2s_ease-in-out_infinite] bg-silver" />
             </span>
-            Scroll to discover
+            Desliza para descubrir
           </a>
-          <p className="label hidden text-bone/40 sm:block">
-            {String(index + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
-          </p>
+          <p className="label hidden text-bone/55 sm:block">N.º 01 — Cuidado automotriz</p>
         </div>
       </div>
     </section>

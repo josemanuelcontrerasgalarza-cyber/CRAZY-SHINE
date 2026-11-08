@@ -11,6 +11,8 @@ export interface Visual {
   alt: string;
   tone: Tone;
   silhouette?: Silhouette;
+  /** Used if `src` is missing on disk (e.g. owner photo not uploaded yet). */
+  fallbackSrc?: string;
   /** CSS object-position for the photograph, e.g. "50% 60%". */
   focus?: string;
 }

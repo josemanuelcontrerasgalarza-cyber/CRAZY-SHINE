@@ -4,78 +4,96 @@ export interface GarageEntry {
   id: string;
   make: string;
   model: string;
-  year?: string;
-  category: "Muscle" | "Classic" | "Sports" | "Performance" | "Daily";
-  service: "Paint Correction" | "Full Detail" | "Premium Wash" | "Classic Care" | "Paint Protection" | "Interior Deep Clean";
+  /** Generación o año, solo si la foto lo permite identificar con certeza. */
+  generation?: string;
+  category: "Muscle car" | "Clásico" | "Deportivo" | "Alto desempeño" | "Diario";
+  service: "Corrección de pintura" | "Full detailing" | "Lavado premium" | "Cuidado clásico" | "Protección de pintura" | "Interiores";
   story: string;
-  details: string[];
   visual: Visual;
 }
 
 /**
- * THE GARAGE — replace each `visual.src` with real photos of jobs done by Crazy Shine.
- * Until then the studio renders are shown and the section is labelled as reference.
+ * EL GARAGE — fotografías de referencia del tipo de vehículos que atiende Crazy Shine.
+ * No son trabajos de Crazy Shine: reemplaza cada `visual.src` por fotos reales cuando las tengas.
  */
 export const garage: GarageEntry[] = [
   {
-    id: "mustang-gt-2021",
+    id: "mustang-gt",
     make: "Ford",
     model: "Mustang GT",
-    year: "2021",
-    category: "Muscle",
-    service: "Paint Correction",
-    story: "American muscle, deep black paint. Black shows everything — so every swirl had to go.",
-    details: ["Multi-stage correction", "Mirror finish on black", "Wheels & calipers"],
-    visual: { tone: "graphite", silhouette: "muscle", alt: "Black Ford Mustang GT 2021" },
+    generation: "S550",
+    category: "Muscle car",
+    service: "Corrección de pintura",
+    story: "Músculo americano en tono oscuro. Los colores oscuros lo muestran todo: cada swirl tiene que desaparecer.",
+    visual: {
+      tone: "graphite",
+      src: "/images/garage/mustang-gt-2021.jpg",
+      fallbackSrc: "/images/garage/mustang-gt.jpg",
+      alt: "Ford Mustang GT gris oscuro, vista frontal",
+      focus: "50% 55%",
+    },
   },
   {
     id: "renault-12",
     make: "Renault",
-    model: "12",
-    category: "Classic",
-    service: "Classic Care",
-    story: "A Colombian icon in intense orange. Classic character, modern detailing standards.",
-    details: ["Gentle paint revival", "Chrome & trim care", "Interior refresh"],
-    visual: { tone: "ember", silhouette: "classic", alt: "Orange classic Renault 12" },
+    model: "12 TL",
+    category: "Clásico",
+    service: "Cuidado clásico",
+    story: "Un ícono de las calles colombianas. Carácter clásico con estándares de detailing modernos.",
+    visual: { tone: "ember", silhouette: "classic", src: "/images/garage/renault-12.jpg", alt: "Renault 12 TL naranja estacionado en la calle", focus: "45% 60%" },
   },
   {
     id: "porsche-911",
     make: "Porsche",
-    model: "911",
-    category: "Sports",
-    service: "Full Detail",
-    story: "Iconic lines deserve a flawless surface. Studio light, zero compromise.",
-    details: ["Decontamination", "Gloss enhancement", "Leather care"],
-    visual: { tone: "steel", silhouette: "coupe", alt: "Porsche 911" },
+    model: "911 GT3 RS",
+    category: "Deportivo",
+    service: "Full detailing",
+    story: "Líneas icónicas que merecen una superficie impecable, del alerón a la cabina.",
+    visual: { tone: "graphite", src: "/images/garage/porsche-911-gt3rs.jpg", alt: "Porsche 911 GT3 RS negro en el puerto", focus: "50% 70%" },
   },
   {
-    id: "bmw-m",
+    id: "bmw-m4",
     make: "BMW",
-    model: "M",
-    category: "Performance",
-    service: "Premium Wash",
-    story: "Track-bred performance, everyday use. A safe wash that respects the paint.",
-    details: ["Snow foam pre-wash", "Two-bucket method", "Streak-free glass"],
-    visual: { tone: "midnight", silhouette: "sedan", alt: "BMW M sedan" },
+    model: "M4",
+    category: "Alto desempeño",
+    service: "Lavado premium",
+    story: "Desempeño de pista para el día a día. Un lavado seguro que respeta la pintura.",
+    visual: { tone: "steel", src: "/images/garage/bmw-m4.jpg", alt: "BMW M4 gris al anochecer", focus: "50% 60%" },
   },
   {
     id: "mercedes-amg",
-    make: "Mercedes",
-    model: "AMG",
-    category: "Performance",
-    service: "Paint Protection",
-    story: "Power with elegance. Protection that keeps the shine long after it leaves the studio.",
-    details: ["Paint sealant", "Hydrophobic glass", "Trim protection"],
-    visual: { tone: "ivory", silhouette: "gt", alt: "Mercedes-AMG coupe" },
+    make: "Mercedes-AMG",
+    model: "C63",
+    category: "Alto desempeño",
+    service: "Protección de pintura",
+    story: "Potencia con elegancia. Protección para que el brillo dure mucho después de salir.",
+    visual: { tone: "steel", src: "/images/garage/mercedes-amg-c63.jpg", alt: "Mercedes-AMG C63 gris con franja amarilla", focus: "50% 45%" },
   },
   {
-    id: "daily-driver",
-    make: "Your",
-    model: "Daily Driver",
-    category: "Daily",
-    service: "Interior Deep Clean",
-    story: "No superdeportivo needed. Every car that comes in gets the same obsession.",
-    details: ["Upholstery extraction", "Odour treatment", "Dashboard & vents"],
-    visual: { tone: "steel", silhouette: "hatch", alt: "Everyday hatchback" },
+    id: "chevrolet-impala",
+    make: "Chevrolet",
+    model: "Impala",
+    category: "Clásico",
+    service: "Cuidado clásico",
+    story: "Cromo, curvas y décadas de historia. Los clásicos reciben paciencia, no atajos.",
+    visual: { tone: "graphite", src: "/images/garage/chevrolet-impala.jpg", alt: "Chevrolet Impala clásico negro", focus: "50% 60%" },
+  },
+  {
+    id: "vw-polo",
+    make: "Volkswagen",
+    model: "Polo",
+    category: "Diario",
+    service: "Interiores",
+    story: "No hace falta un superdeportivo. El carro de todos los días recibe la misma obsesión.",
+    visual: { tone: "steel", src: "/images/garage/vw-polo.jpg", alt: "Volkswagen Polo azul", focus: "50% 60%" },
+  },
+  {
+    id: "bmw-m2",
+    make: "BMW",
+    model: "M2",
+    category: "Alto desempeño",
+    service: "Corrección de pintura",
+    story: "Azul profundo bajo el atardecer. La corrección revela el color que la pintura siempre tuvo.",
+    visual: { tone: "midnight", src: "/images/garage/bmw-m2.jpg", alt: "BMW M2 azul al atardecer frente al mar", focus: "50% 60%" },
   },
 ];

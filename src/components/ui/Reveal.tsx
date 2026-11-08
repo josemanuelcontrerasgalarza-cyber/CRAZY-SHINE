@@ -43,21 +43,23 @@ interface MaskedHeadlineProps {
   /** Animate on mount instead of on scroll (for the hero). */
   immediate?: boolean;
   delay?: number;
+  id?: string;
 }
 
 /** Headline where each line slides up from behind a mask — the signature reveal. */
-export function MaskedHeadline({ lines, className, lineClassName, as = "h2", immediate, delay = 0 }: MaskedHeadlineProps) {
+export function MaskedHeadline({ lines, className, lineClassName, as = "h2", immediate, delay = 0, id }: MaskedHeadlineProps) {
   const reduce = useReducedMotion();
   const Tag = motion[as];
   return (
     <Tag
+      id={id}
       className={className}
       initial="hidden"
       {...(immediate ? { animate: "visible" } : { whileInView: "visible", viewport: { once: true, margin: "0px 0px -10% 0px" } })}
       transition={{ delayChildren: delay }}
     >
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.06em]">
+        <span key={i} className="-mt-[0.16em] block overflow-hidden pb-[0.06em] pt-[0.16em]">
           <motion.span
             className={lineClassName ?? "block"}
             variants={reduce ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : lineVariants}

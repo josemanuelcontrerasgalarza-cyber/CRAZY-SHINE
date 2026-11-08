@@ -1,50 +1,38 @@
-# CRAZY SHINE — Premium Automotive Detailing
+# CRAZY SHINE — Detailing automotriz
 
-Cinematic, editorial website for Crazy Shine. Built with **Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Framer Motion · GSAP ScrollTrigger · Lenis · Lucide**.
+Sitio web de Crazy Shine con el lenguaje visual de THEFATTEST adaptado al detailing automotriz.
+**Next.js 16 · TypeScript · Tailwind CSS 4 · Framer Motion · GSAP · Lenis · Lucide · Neon (PostgreSQL)**.
 
 ```bash
 npm install
-cp .env.example .env.local   # set the WhatsApp number etc.
+cp .env.example .env.local   # número de WhatsApp, Neon, Instagram, ubicación…
+npm run db:setup             # crea la tabla de reservas en Neon (requiere DATABASE_URL)
 npm run dev                  # http://localhost:3000
-npm run build && npm start   # production
+npm run build && npm start
 ```
 
-## Configuration
+## Sistema visual
+- Tipografía: **Anton** (titulares), **Inter** (texto), **JetBrains Mono** (etiquetas).
+- Paleta: negro profundo `#080808`, grafito, blanco, gris metálico y **cromo/plata** como acento (`text-chrome`, `bg-chrome-gradient`).
+- Recursos editoriales: titulares sólido + contorno, barra de anuncios, marquees infinitos (contorno y cinta cromada), palabras gigantes de fondo, etiquetas mono, botones entre corchetes con barrido de brillo.
 
-All business data is in `src/config/site.ts` and read from environment variables — nothing is hardcoded in components.
+## Secciones
+Hero (Mustang GT protagonista) → Marquee → Servicios (grilla asimétrica, palabra de identidad por servicio) → Beneficios → Garage (grilla tipo campaña) → Cinta cromada → Nuestra esencia → Antes y después (slider) → Reserva (formulario + Neon) → Contacto → Footer.
 
-| Variable | Purpose |
+## Variables de entorno
+| Variable | Uso |
 | --- | --- |
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | International format, digits only. If empty, buttons open WhatsApp's contact picker with the message prefilled. |
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL for SEO, sitemap and Open Graph. |
-| `NEXT_PUBLIC_INSTAGRAM_URL` / `_HANDLE` | Footer Instagram link. |
-| `NEXT_PUBLIC_LOCATION` / `NEXT_PUBLIC_MAPS_URL` | Footer address and map link. |
-| `NEXT_PUBLIC_HOURS` | Opening hours text. |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Número en formato internacional, solo dígitos (p. ej. 573001234567). Sin él, los botones abren WhatsApp con el mensaje escrito para elegir contacto. |
+| `DATABASE_URL` | Cadena de conexión de **Neon**. Guarda cada solicitud del formulario en la tabla `bookings` (`db/schema.sql`). Sin ella, el formulario igual funciona y pasa a WhatsApp. |
+| `NEXT_PUBLIC_SITE_URL` | URL pública para SEO y sitemap. |
+| `NEXT_PUBLIC_INSTAGRAM_URL` / `_HANDLE` | Instagram en contacto y footer. |
+| `NEXT_PUBLIC_LOCATION` / `NEXT_PUBLIC_MAPS_URL` | Ubicación y enlace a Google Maps. |
+| `NEXT_PUBLIC_HOURS` | Horario. |
 
-WhatsApp messages (general, per-service, quote, booking) are defined in `site.ts` and in each section.
+En Vercel: Project Settings → Environment Variables (o la integración de Neon, que crea `DATABASE_URL`).
 
-## Photography
+## Fotografías
+Están en `public/images/**` y se configuran en `src/content/*`. Son fotos de referencia (Unsplash y Wikimedia Commons, ver `public/images/CREDITS.md`) y el sitio lo indica; no son trabajos de Crazy Shine.
 
-Every image slot is a `Visual` in `src/content/*`:
-
-- `media.ts` — hero slides (Mustang GT 2021, Porsche 911, Renault 12, BMW M, Mercedes-AMG), editorial and final CTA images
-- `services.ts` — one visual per service
-- `garage.ts` — The Garage gallery (vehicle, service tag, story, details)
-- `transformations.ts` — before / after pairs
-
-Put photos in `public/images/**` and set `src` (e.g. `src: "/images/garage/mustang-gt-2021.jpg"`). They are served through `next/image` (AVIF/WebP, lazy loading, responsive `sizes`). Until a `src` is set, an SVG **studio render** is shown — it is unbranded, weighs nothing and never pretends to be a real job; the gallery shows a notice while renders are in use. For before/after, provide both `before.src` and `after.src`.
-
-## Structure
-
-```
-src/app            layout (fonts, SEO), page, privacy, terms, sitemap, robots, icon
-src/config         site.ts — business config + WhatsApp helpers
-src/content        editable content and image slots
-src/components     Navbar, Footer, WhatsAppFloat, SmoothScroll, LegalPage
-  sections/        Hero, ArtOfDetailing, Marquee, Services, Garage, BeforeAfter, WhyCrazyShine, FinalCta
-  ui/              Media, StudioRender, Reveal/MaskedHeadline, Cta, Logo, icons
-```
-
-## Motion & accessibility
-
-Masked headline reveals, hero crossfade + scroll push-in, parallax, pinned horizontal gallery (desktop; swipe with scroll-snap on mobile), clip-path reveals, Lenis smooth scroll. `prefers-reduced-motion` disables smooth scrolling, pinning, parallax and autoplay. Keyboard-operable slider (arrow keys), skip link, focus styles, semantic landmarks, JSON-LD `AutoWash` schema.
+- **Mustang GT 2021**: las fotos de referencia disponibles son Mustang S550 2015–2017. Sube tu foto como `public/images/hero/mustang-gt-2021.jpg` (hero) y `public/images/garage/mustang-gt-2021.jpg` (garage): el build la detecta y la usa automáticamente en lugar del respaldo.
+- **Antes y después**: sube la foto real del "antes" y cambia `before.src` en `src/content/transformations.ts`. Mientras sea la misma foto, se muestra una simulación rotulada como tal.
