@@ -16,7 +16,7 @@ export function Perks() {
             key={title}
             className="group flex gap-4 border-bone/[0.07] py-8 sm:px-6 sm:[&:nth-child(odd)]:border-r lg:border-r lg:px-8 lg:first:pl-0 lg:last:border-r-0"
           >
-            <Icon className="mt-0.5 h-5 w-5 shrink-0 text-silver transition-transform duration-700 group-hover:-rotate-12" strokeWidth={1.5} aria-hidden="true" />
+            <Icon className="mt-0.5 h-5 w-5 shrink-0 text-crazy transition-transform duration-700 group-hover:-rotate-12" strokeWidth={1.5} aria-hidden="true" />
             <div>
               <p className="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-bone">{title}</p>
               <p className="mt-1.5 text-sm text-metal">{text}</p>

@@ -18,6 +18,7 @@ const layout = [
   "lg:col-span-7 lg:h-[34rem]",
   "lg:col-span-4 lg:h-[38rem]",
   "lg:col-span-8 lg:h-[38rem]",
+  "lg:col-span-12 lg:h-[32rem]",
 ];
 
 export function Services() {
@@ -26,7 +27,7 @@ export function Services() {
       <div className="container-x">
         <div className="mb-12 flex flex-col gap-8 sm:mb-16 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="label mb-6 text-metal">(01) — Seis disciplinas, un estándar</p>
+            <p className="label mb-6 text-metal"><span className="text-crazy">(01)</span> — Siete disciplinas, un estándar</p>
             <MaskedHeadline
               as="h2"
               id="servicios-title"
@@ -55,7 +56,7 @@ export function Services() {
             <motion.li
               key={service.id}
               id={service.id}
-              className={clsx(layout[i], (i === 0 || i === 5) && "sm:col-span-2")}
+              className={clsx(layout[i], (i === 0 || i === 5 || i === 6) && "sm:col-span-2")}
               initial={{ opacity: 0, y: 48 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -8% 0px" }}
@@ -109,7 +110,7 @@ export function Services() {
                       </div>
                     </div>
                   </div>
-                  <span className="grid h-11 w-11 shrink-0 place-items-center border border-bone/30 text-bone transition-all duration-500 group-hover:rotate-45 group-hover:border-chrome group-hover:bg-chrome group-hover:text-ink">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center border border-bone/30 text-bone transition-all duration-500 group-hover:rotate-45 group-hover:border-crazy group-hover:bg-crazy group-hover:text-ink">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>

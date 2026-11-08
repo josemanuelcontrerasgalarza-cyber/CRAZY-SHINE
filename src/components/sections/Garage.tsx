@@ -24,7 +24,7 @@ export function Garage() {
       <div className="container-x relative">
         <div className="mb-12 flex flex-col gap-8 sm:mb-16 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="label mb-6 text-metal">(02) — Muscle, clásicos, deportivos y diarios</p>
+            <p className="label mb-6 text-metal"><span className="text-crazy">(02)</span> — Muscle, clásicos, deportivos y diarios</p>
             <MaskedHeadline
               id="garage-title"
               className="display text-[clamp(3.2rem,9vw,8.5rem)] text-bone"
@@ -62,7 +62,7 @@ export function Garage() {
               href={whatsappLink("Hola Crazy Shine, quiero agendar un servicio para mi vehículo.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="shine group flex aspect-[2/1] h-full flex-col justify-between bg-chrome-gradient p-6 text-ink lg:aspect-auto"
+              className="shine group flex aspect-[2/1] h-full flex-col justify-between bg-crazy p-6 text-ink lg:aspect-auto"
             >
               <span className="label">Tu carro</span>
               <span className="display text-5xl sm:text-6xl">
@@ -72,7 +72,7 @@ export function Garage() {
               </span>
               <span className="flex items-center justify-between">
                 <span className="label">Agenda tu servicio</span>
-                <span className="grid h-10 w-10 place-items-center bg-ink text-chrome transition-transform duration-500 group-hover:rotate-45">
+                <span className="grid h-10 w-10 place-items-center bg-ink text-crazy transition-transform duration-500 group-hover:rotate-45">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </span>

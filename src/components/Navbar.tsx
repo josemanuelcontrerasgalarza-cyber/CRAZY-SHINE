@@ -60,7 +60,7 @@ export function Navbar() {
                 className="group relative text-[0.72rem] font-medium uppercase tracking-[0.22em] text-bone/75 transition-colors hover:text-bone"
               >
                 {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-bone transition-transform duration-500 ease-[var(--ease-cinematic)] group-hover:scale-x-100" />
+                <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-crazy transition-transform duration-500 ease-[var(--ease-cinematic)] group-hover:scale-x-100" />
               </a>
             </li>
           ))}
@@ -71,7 +71,7 @@ export function Navbar() {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="shine hidden items-center gap-2.5 bg-chrome px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:bg-bone sm:inline-flex"
+            className="shine hidden items-center gap-2.5 bg-crazy px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:bg-bone sm:inline-flex"
           >
             <WhatsAppIcon className="h-3.5 w-3.5" />
             Reservar
@@ -112,13 +112,13 @@ export function Navbar() {
                     <motion.a
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="display flex items-baseline gap-4 py-1 text-[clamp(3rem,13vw,5.5rem)] text-bone transition-colors hover:text-silver"
+                      className="display flex items-baseline gap-4 py-1 text-[clamp(3rem,13vw,5.5rem)] text-bone transition-colors hover:text-crazy"
                       initial={{ y: "100%" }}
                       animate={{ y: "0%" }}
                       exit={{ y: "100%" }}
                       transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.06 }}
                     >
-                      <span className="font-mono text-xs tracking-normal text-metal">0{i + 1}</span>
+                      <span className="font-mono text-xs tracking-normal text-crazy">0{i + 1}</span>
                       {link.label}
                     </motion.a>
                   </li>
@@ -136,7 +136,7 @@ export function Navbar() {
                 href={whatsappLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-chrome px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink"
+                className="inline-flex items-center gap-2.5 bg-crazy px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ink"
               >
                 <WhatsAppIcon className="h-3.5 w-3.5" /> Reservar
               </a>

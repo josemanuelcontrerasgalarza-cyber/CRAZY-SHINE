@@ -47,7 +47,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease, delay: 0.2 }}
         >
-          <span className="h-1.5 w-1.5 rotate-45 bg-silver" />
+          <span className="h-1.5 w-1.5 rotate-45 bg-crazy" />
           Crazy Shine — Detailing automotriz
         </motion.p>
 
@@ -60,7 +60,7 @@ export function Hero() {
             <span key="a" className="text-fade">
               No es solo limpiar.
             </span>,
-            <span key="b" className="text-chrome">
+            <span key="b" className="text-crazy">
               Es hacerlo brillar.
             </span>,
           ]}
@@ -107,7 +107,7 @@ export function Hero() {
           <span className="label block text-[0.58rem] text-metal">Protagonista — {heroVisual.detail}</span>
           <span className="mt-1.5 block font-display text-xl uppercase leading-none text-bone">{heroVisual.model}</span>
         </span>
-        <span className="grid h-10 w-10 shrink-0 place-items-center bg-chrome text-ink transition-transform duration-500 group-hover:rotate-45">
+        <span className="grid h-10 w-10 shrink-0 place-items-center bg-crazy text-ink transition-transform duration-500 group-hover:rotate-45">
           <ArrowUpRight className="h-4 w-4" />
         </span>
         <span className="sr-only">(abre WhatsApp)</span>
@@ -121,7 +121,7 @@ export function Hero() {
         <div className="container-x flex items-center justify-between border-t border-bone/10 py-5">
           <a href="#servicios" className="label flex items-center gap-3 text-bone/65 transition-colors hover:text-bone">
             <span className="relative block h-8 w-px overflow-hidden bg-bone/20">
-              <span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_2s_ease-in-out_infinite] bg-silver" />
+              <span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_2s_ease-in-out_infinite] bg-crazy" />
             </span>
             Desliza para descubrir
           </a>

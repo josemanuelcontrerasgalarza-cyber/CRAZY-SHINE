@@ -19,7 +19,7 @@ export function BeforeAfter() {
       <div className="container-x">
         <div className="mb-14 grid gap-10 lg:mb-20 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <p className="label mb-8 text-metal">(04) — Antes y después</p>
+            <p className="label mb-8 text-metal"><span className="text-crazy">(04)</span> — Antes y después</p>
             <MaskedHeadline
               id="ba-title"
               className="display text-[clamp(3.2rem,10vw,9.5rem)] text-bone"
@@ -43,7 +43,7 @@ export function BeforeAfter() {
                   onClick={() => setActive(i)}
                   className={clsx(
                     "border px-4 py-2.5 font-mono text-[0.7rem] uppercase tracking-[0.2em] transition-colors duration-500",
-                    active === i ? "border-bone bg-bone text-ink" : "border-bone/15 text-bone/70 hover:border-bone/50 hover:text-bone",
+                    active === i ? "border-crazy bg-crazy text-ink" : "border-bone/15 text-bone/70 hover:border-bone/50 hover:text-bone",
                   )}
                 >
                   {item.title}
@@ -126,7 +126,7 @@ function CompareSlider({ before, after, title }: { before: (typeof transformatio
       </div>
 
       <span className="label pointer-events-none absolute left-4 top-4 bg-ink/70 px-3 py-1.5 text-bone sm:left-6 sm:top-6">Antes</span>
-      <span className="label pointer-events-none absolute right-4 top-4 bg-bone px-3 py-1.5 text-ink sm:right-6 sm:top-6">Después</span>
+      <span className="label pointer-events-none absolute right-4 top-4 bg-crazy px-3 py-1.5 text-ink sm:right-6 sm:top-6">Después</span>
 
       {/* Handle */}
       <div className="pointer-events-none absolute inset-y-0" style={{ left: `${pos}%` }}>

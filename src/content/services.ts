@@ -67,4 +67,14 @@ export const services: Service[] = [
     includes: ["Desengrase seguro", "Cepillado de detalle", "Acondicionado de plásticos"],
     visual: { tone: "graphite", src: "/images/services/engine-bay.jpg", alt: "Compartimiento del motor de un auto rojo de alto desempeño", focus: "50% 45%" },
   },
+  {
+    id: "polarizado",
+    number: "07",
+    name: "Polarizado",
+    keyword: "Sombra",
+    summary:
+      "Láminas de control solar para más privacidad, menos calor y protección contra los rayos UV, dentro de los niveles de oscurecimiento permitidos por la ley.",
+    includes: ["Asesoría de tono", "Control solar y UV", "Instalación sin burbujas"],
+    visual: { tone: "graphite", src: "/images/services/polarizado.jpg", alt: "Tesla Model S negro con vidrios polarizados en carretera", focus: "50% 55%" },
+  },
 ];

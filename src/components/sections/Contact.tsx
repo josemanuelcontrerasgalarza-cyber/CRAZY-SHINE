@@ -52,7 +52,7 @@ export function Contact() {
         </motion.div>
 
         <div className="container-x relative z-10 flex min-h-[100svh] flex-col justify-center py-32">
-          <p className="label mb-8 text-bone/70">(06) — Contacto</p>
+          <p className="label mb-8 text-bone/70"><span className="text-crazy">(06)</span> — Contacto</p>
           <MaskedHeadline
             id="contacto-title"
             className="display max-w-[12ch] text-[clamp(3.4rem,10vw,10.5rem)]"
@@ -63,7 +63,7 @@ export function Contact() {
               <span key="b" className="text-fade">
                 merece
               </span>,
-              <span key="c" className="text-chrome">
+              <span key="c" className="text-crazy">
                 Crazy Shine.
               </span>,
             ]}
@@ -83,7 +83,7 @@ export function Contact() {
             <>
               <span className="flex items-center justify-between">
                 <span className="label flex items-center gap-2.5 text-metal">
-                  <Icon className="h-4 w-4 text-silver" aria-hidden="true" />
+                  <Icon className="h-4 w-4 text-crazy" aria-hidden="true" />
                   {label}
                 </span>
                 {href && <ArrowUpRight className="h-4 w-4 text-bone/50 transition-all duration-500 group-hover:rotate-45 group-hover:text-bone" />}

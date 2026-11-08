@@ -10,7 +10,7 @@ export function Logo({ className, size = "md" }: { className?: string; size?: "m
       </span>
       <span className={clsx("mt-1 flex items-center gap-1.5 font-mono uppercase text-bone/70", xl ? "text-xs tracking-[0.4em]" : "text-[0.5rem] tracking-[0.32em]")}>
         <svg viewBox="0 0 10 10" className={xl ? "h-3 w-3" : "h-2 w-2"} aria-hidden="true">
-          <path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" fill="#C9CED4" />
+          <path d="M5 0 L6 4 L10 5 L6 6 L5 10 L4 6 L0 5 L4 4 Z" fill="#FF5B14" />
         </svg>
         Detailing automotriz
       </span>

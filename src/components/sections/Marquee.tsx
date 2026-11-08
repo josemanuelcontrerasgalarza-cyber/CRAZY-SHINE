@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-const words = ["Detailing profesional", "Brillo extremo", "Cuidado automotriz", "Crazy Shine"];
+const words = ["Detailing profesional", "Brillo extremo", "Polarizado", "Cuidado automotriz", "Crazy Shine"];
 
 function Star({ className }: { className?: string }) {
   return (
@@ -19,8 +19,8 @@ export function Marquee({ variant = "outline", reverse = false }: { variant?: "o
   const row = [...words, ...words, ...words, ...words];
   return (
     <div className={clsx("relative overflow-hidden bg-ink", band ? "py-12" : "border-y border-bone/[0.07] py-7")} role="presentation">
-      <p className="sr-only">Detailing profesional, brillo extremo, cuidado automotriz, Crazy Shine.</p>
-      <div className={clsx(band && "-mx-6 -rotate-[1.6deg] bg-chrome-gradient py-4 shadow-[0_0_80px_rgba(201,206,212,0.18)]")} aria-hidden="true">
+      <p className="sr-only">Detailing profesional, brillo extremo, polarizado, cuidado automotriz, Crazy Shine.</p>
+      <div className={clsx(band && "-mx-6 -rotate-[1.6deg] bg-crazy py-4 shadow-[0_0_90px_rgba(255,91,20,0.35)]")} aria-hidden="true">
         <div
           className="flex w-max hover:[animation-play-state:paused]"
           style={{ animation: `marquee ${band ? 40 : 55}s linear infinite${reverse ? " reverse" : ""}` }}
@@ -28,7 +28,7 @@ export function Marquee({ variant = "outline", reverse = false }: { variant?: "o
           {row.map((w, i) => (
             <span key={i} className={clsx("display flex items-center gap-8 pr-8 text-4xl sm:gap-12 sm:pr-12 sm:text-7xl", band ? "text-ink" : "text-bone")}>
               {band || i % 2 === 0 ? w : <span className="text-outline">{w}</span>}
-              <Star className={band ? "text-ink" : "text-silver"} />
+              <Star className={band ? "text-ink" : "text-crazy"} />
             </span>
           ))}
         </div>

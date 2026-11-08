@@ -17,7 +17,7 @@ interface Props {
 }
 
 const styles: Record<Variant, string> = {
-  primary: "bg-chrome text-ink hover:bg-bone [&_.cta-icon]:bg-ink [&_.cta-icon]:text-chrome",
+  primary: "bg-crazy text-ink hover:bg-bone [&_.cta-icon]:bg-ink [&_.cta-icon]:text-crazy",
   ghost:
     "border border-bone/25 text-bone hover:border-bone hover:bg-bone hover:text-ink [&_.cta-icon]:border [&_.cta-icon]:border-current",
 };

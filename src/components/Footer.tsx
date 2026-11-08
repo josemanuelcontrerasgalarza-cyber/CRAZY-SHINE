@@ -16,13 +16,13 @@ export function Footer() {
           <div className="lg:col-span-5">
             <Logo className="text-bone" size="xl" />
             <p className="mt-8 max-w-sm leading-relaxed text-bone/70">
-              No es solo limpiar. Es hacerlo brillar. Detailing profesional y cuidado automotriz premium.
+              No es solo limpiar. Es hacerlo brillar. Detailing profesional, polarizado y cuidado automotriz premium.
             </p>
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="shine group mt-10 inline-flex items-center gap-3 bg-chrome px-6 py-4 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:bg-bone"
+              className="shine group mt-10 inline-flex items-center gap-3 bg-crazy px-6 py-4 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:bg-bone"
             >
               <WhatsAppIcon className="h-4 w-4" /> Agenda por WhatsApp
               <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
@@ -74,7 +74,9 @@ export function Footer() {
 
         <p aria-hidden="true" className="display mt-24 select-none text-[clamp(4.5rem,19vw,18rem)] leading-[0.82] sm:mt-32">
           <span className="block text-fade">Siempre</span>
-          <span className="block text-outline">Crazy Shine.</span>
+          <span className="block text-outline">
+            Crazy Shine<span className="text-crazy [-webkit-text-stroke:0]">.</span>
+          </span>
         </p>
 
         <div className="flex flex-col gap-4 border-t border-bone/10 pb-28 pt-8 text-xs text-metal sm:flex-row sm:items-center sm:justify-between sm:pb-8 sm:pr-24">

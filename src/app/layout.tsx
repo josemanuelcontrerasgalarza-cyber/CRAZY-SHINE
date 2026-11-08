@@ -19,6 +19,8 @@ export const metadata: Metadata = {
     "lavado de carros",
     "lavado premium",
     "corrección de pintura",
+    "polarizado",
+    "polarizado de vidrios",
     "limpieza de interiores",
     "protección de pintura",
     "Crazy Shine",

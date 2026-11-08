@@ -12,6 +12,9 @@
   --color-chrome: #e4e7eb;
   --color-chrome-deep: #9aa1a8;
   --color-whatsapp: #25d366;
+  /* Naranja Crazy: el acento loco de la marca */
+  --color-crazy: #ff5b14;
+  --color-crazy-deep: #e04400;
 
   --font-display: var(--font-display-face), "Arial Narrow", sans-serif;
   --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
@@ -50,11 +53,11 @@ body {
 }
 
 ::selection {
-  background: var(--color-chrome);
+  background: var(--color-crazy);
   color: var(--color-ink);
 }
 :focus-visible {
-  outline: 2px solid var(--color-chrome);
+  outline: 2px solid var(--color-crazy);
   outline-offset: 3px;
 }
 

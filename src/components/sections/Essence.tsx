@@ -38,7 +38,7 @@ export function Essence() {
 
       <div className="container-x relative grid gap-16 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5 lg:pt-16">
-          <p className="label mb-8 text-metal">(03) — Nuestra esencia</p>
+          <p className="label mb-8 text-metal"><span className="text-crazy">(03)</span> — Nuestra esencia</p>
           <MaskedHeadline
             id="esencia-title"
             className="display text-[clamp(3.4rem,8vw,8rem)] text-bone"

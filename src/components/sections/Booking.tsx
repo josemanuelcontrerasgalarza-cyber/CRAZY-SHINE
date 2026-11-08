@@ -12,7 +12,7 @@ import { WhatsAppIcon } from "../ui/icons";
 const initial: BookingState = { status: "idle" };
 
 const field =
-  "peer w-full border-0 border-b border-bone/20 bg-transparent px-0 pb-3 pt-2 text-lg text-bone placeholder:text-bone/25 transition-colors focus:border-chrome focus:outline-none focus:ring-0";
+  "peer w-full border-0 border-b border-bone/20 bg-transparent px-0 pb-3 pt-2 text-lg text-bone placeholder:text-bone/25 transition-colors focus:border-crazy focus:outline-none focus:ring-0";
 
 export function Booking() {
   const [state, action, pending] = useActionState(createBooking, initial);
@@ -28,7 +28,7 @@ export function Booking() {
     <section id="reserva" className="relative border-t border-bone/[0.07] bg-ink py-28 sm:py-40" aria-labelledby="booking-title">
       <div className="container-x grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <p className="label mb-8 text-metal">(05) — Reserva</p>
+          <p className="label mb-8 text-metal"><span className="text-crazy">(05)</span> — Reserva</p>
           <MaskedHeadline
             id="booking-title"
             className="display text-[clamp(3.4rem,8vw,7.5rem)] text-bone"
@@ -47,7 +47,7 @@ export function Booking() {
             <ul className="mt-10 space-y-4 border-t border-bone/10 pt-8 text-sm text-bone/70">
               {["Respuesta por WhatsApp", "Cotización según tu vehículo", "Sin pagos en línea"].map((t) => (
                 <li key={t} className="flex items-center gap-3">
-                  <span className="grid h-5 w-5 place-items-center bg-bone text-ink">
+                  <span className="grid h-5 w-5 place-items-center bg-crazy text-ink">
                     <Check className="h-3 w-3" strokeWidth={3} />
                   </span>
                   {t}
@@ -60,7 +60,7 @@ export function Booking() {
         <Reveal className="lg:col-span-6 lg:col-start-7">
           {state.status === "success" ? (
             <div className="flex h-full flex-col justify-center border border-bone/10 bg-graphite p-8 sm:p-12" role="status">
-              <span className="label text-chrome">Solicitud {state.saved ? "registrada" : "lista"}</span>
+              <span className="label text-crazy">Solicitud {state.saved ? "registrada" : "lista"}</span>
               <p className="display mt-6 text-5xl text-bone sm:text-6xl">
                 Gracias.
                 <br />
@@ -71,7 +71,7 @@ export function Booking() {
                 href={state.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shine mt-8 inline-flex w-fit items-center gap-3 bg-chrome px-6 py-4 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors hover:bg-bone"
+                className="shine mt-8 inline-flex w-fit items-center gap-3 bg-crazy px-6 py-4 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors hover:bg-bone"
               >
                 <WhatsAppIcon className="h-4 w-4" /> Continuar en WhatsApp
               </a>
@@ -108,7 +108,7 @@ export function Booking() {
 
               <div className="sm:col-span-2">
                 <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-bone/60">
-                  <input type="checkbox" name="consent" className="mt-1 h-4 w-4 shrink-0 accent-[#c9ced4]" aria-invalid={!!err.consent} />
+                  <input type="checkbox" name="consent" className="mt-1 h-4 w-4 shrink-0 accent-[#ff5b14]" aria-invalid={!!err.consent} />
                   <span>
                     Autorizo el tratamiento de mis datos personales de acuerdo con la{" "}
                     <Link href="/privacidad" className="underline underline-offset-4 hover:text-silver">
@@ -127,12 +127,12 @@ export function Booking() {
                 <button
                   type="submit"
                   disabled={pending}
-                  className="shine group inline-flex items-center justify-center gap-4 bg-chrome py-2 pl-6 pr-2 text-[0.8rem] font-semibold uppercase tracking-[0.18em] text-ink transition-colors duration-500 hover:bg-bone disabled:opacity-60"
+                  className="shine group inline-flex items-center justify-center gap-4 bg-crazy py-2 pl-6 pr-2 text-[0.8rem] font-semibold uppercase tracking-[0.18em] text-ink transition-colors duration-500 hover:bg-bone disabled:opacity-60"
                 >
                   <span>
                     <span className="opacity-50">[ </span>Enviar solicitud<span className="opacity-50"> ]</span>
                   </span>
-                  <span className="grid h-10 w-10 place-items-center bg-ink text-chrome transition-transform duration-500 group-hover:rotate-45">
+                  <span className="grid h-10 w-10 place-items-center bg-ink text-crazy transition-transform duration-500 group-hover:rotate-45">
                     {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowUpRight className="h-4 w-4" />}
                   </span>
                 </button>

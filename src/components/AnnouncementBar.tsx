@@ -2,6 +2,7 @@ const items = [
   "Agenda tu servicio por WhatsApp",
   "Detailing profesional",
   "Corrección de pintura",
+  "Polarizado",
   "Cotización según tu vehículo",
   "Cuidado automotriz premium",
 ];
@@ -15,7 +16,7 @@ export function AnnouncementBar() {
         {row.map((t, i) => (
           <li key={i} className="label flex items-center gap-8 pr-8 text-[0.62rem] text-bone/70" aria-hidden={i >= items.length}>
             {t}
-            <span className="h-1 w-1 rotate-45 bg-silver" />
+            <span className="h-1 w-1 rotate-45 bg-crazy" />
           </li>
         ))}
       </ul>

@@ -9,7 +9,7 @@ export const siteConfig = {
   name: "Crazy Shine",
   tagline: "Detailing automotriz",
   description:
-    "Crazy Shine — detailing automotriz profesional en Colombia. Lavado premium, full detailing, corrección de pintura, limpieza profunda de interiores, protección de pintura y detailing de motor.",
+    "Crazy Shine — detailing automotriz profesional en Colombia. Lavado premium, full detailing, corrección de pintura, limpieza profunda de interiores, protección de pintura, detailing de motor y polarizado.",
   url: env(process.env.NEXT_PUBLIC_SITE_URL) ?? "https://crazy-shine-3os4.vercel.app",
   locale: "es_CO",
 

@@ -22,6 +22,13 @@ export default function TermsPage() {
         <p>Las citas se confirman por WhatsApp. Si necesitas reprogramar o cancelar, avísanos con anticipación.</p>
       </section>
       <section>
+        <h2>Polarizado</h2>
+        <p>
+          Instalamos láminas dentro de los niveles de transmisión de luz permitidos por la normativa de tránsito colombiana. Los
+          permisos especiales para tonos más oscuros son responsabilidad del propietario del vehículo.
+        </p>
+      </section>
+      <section>
         <h2>Estado del vehículo</h2>
         <p>
           Los resultados dependen del estado original de la pintura y los materiales. Rayones profundos, golpes o daños previos
