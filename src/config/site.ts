@@ -14,8 +14,10 @@ export const siteConfig = {
   locale: "es_CO",
 
   whatsapp: {
-    /** Formato internacional, solo dígitos. Configúralo con NEXT_PUBLIC_WHATSAPP_NUMBER. */
-    number: env(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER)?.replace(/\D/g, ""),
+    /** Formato internacional, solo dígitos (57 = Colombia). Se puede cambiar con NEXT_PUBLIC_WHATSAPP_NUMBER. */
+    number: (env(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER) ?? "573219518808").replace(/\D/g, ""),
+    /** Como se muestra en pantalla. */
+    display: env(process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY) ?? "321 951 8808",
     defaultMessage: "Hola Crazy Shine, quiero información sobre sus servicios de detailing y lavado profesional.",
   },
 
@@ -41,15 +43,13 @@ export const navLinks = [
   { label: "Contacto", href: "#contacto" },
 ] as const;
 
-/**
- * Enlace de WhatsApp. Sin número configurado, wa.me abre el selector de contactos
- * con el mensaje ya escrito, así que el botón sigue funcionando.
- */
+/** Enlace de WhatsApp con el mensaje ya escrito. */
 export function whatsappLink(message: string = siteConfig.whatsapp.defaultMessage) {
   const text = encodeURIComponent(message);
-  const number = siteConfig.whatsapp.number;
-  return number ? `https://wa.me/${number}?text=${text}` : `https://wa.me/?text=${text}`;
+  return `https://wa.me/${siteConfig.whatsapp.number}?text=${text}`;
 }
+
+export const phoneLink = () => `tel:+${siteConfig.whatsapp.number}`;
 
 export function serviceMessage(service: string) {
   return `Hola Crazy Shine, quiero información y precio del servicio de ${service.toLowerCase()} para mi vehículo.`;

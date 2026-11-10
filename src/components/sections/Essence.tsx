@@ -44,8 +44,8 @@ export function Essence() {
             className="display text-[clamp(3.4rem,8vw,8rem)] text-bone"
             lines={[
               "Más que",
-              <span key="b" className="text-chrome">
-                un lavado.
+              <span key="b" className="text-outline">
+                un lavado<span className="text-crazy [-webkit-text-stroke:0]">.</span>
               </span>,
             ]}
           />
@@ -95,10 +95,12 @@ export function Essence() {
           <motion.div style={{ y: yFast }} className="absolute bottom-6 left-0 aspect-[4/5] w-[42%] overflow-hidden border-[6px] border-graphite bg-ink shadow-2xl">
             <Media visual={macro} sizes="(min-width: 1024px) 22vw, 40vw" />
           </motion.div>
-          <motion.div style={{ y: yMid }} className="absolute bottom-0 right-[8%] hidden aspect-[4/3] w-[32%] overflow-hidden border-[6px] border-graphite bg-ink shadow-2xl sm:block">
+          <motion.div style={{ y: yMid }} className="absolute bottom-0 right-0 hidden aspect-[4/3] w-[30%] overflow-hidden border-[6px] border-graphite bg-ink shadow-2xl sm:block">
             <Media visual={side} sizes="(min-width: 1024px) 18vw, 30vw" />
           </motion.div>
-          <p className="label absolute right-0 top-[80%] hidden text-[0.58rem] text-metal sm:block lg:top-[79%]">Fig. 01 — Reflejo, espuma, carácter</p>
+          <p className="label absolute left-[46%] top-[81%] hidden max-w-[10rem] text-[0.58rem] leading-relaxed text-metal sm:block">
+            Fig. 01 — Reflejo, espuma, carácter
+          </p>
         </div>
       </div>
     </section>

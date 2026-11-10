@@ -23,13 +23,13 @@ export function Contact() {
     {
       Icon: WhatsAppIcon,
       label: "WhatsApp",
-      value: "Reservas y cotizaciones",
+      value: siteConfig.whatsapp.display,
       href: whatsappLink(),
     },
     {
       Icon: MapPin,
       label: "Ubicación",
-      value: location.label ?? "Escríbenos y te compartimos la ubicación",
+      value: location.label ?? "Te la enviamos por WhatsApp",
       href: location.mapsUrl ?? (location.label ? undefined : whatsappLink("Hola Crazy Shine, ¿dónde están ubicados?")),
     },
     {
@@ -52,7 +52,7 @@ export function Contact() {
         </motion.div>
 
         <div className="container-x relative z-10 flex min-h-[100svh] flex-col justify-center py-32">
-          <p className="label mb-8 text-bone/70"><span className="text-crazy">(06)</span> — Contacto</p>
+          <p className="label mb-8 text-bone/70"><span className="text-crazy">(07)</span> — Contacto</p>
           <MaskedHeadline
             id="contacto-title"
             className="display max-w-[12ch] text-[clamp(3.4rem,10vw,10.5rem)]"
@@ -88,7 +88,7 @@ export function Contact() {
                 </span>
                 {href && <ArrowUpRight className="h-4 w-4 text-bone/50 transition-all duration-500 group-hover:rotate-45 group-hover:text-bone" />}
               </span>
-              <span className="mt-4 block text-lg text-bone">{value}</span>
+              <span className="mt-4 block text-balance text-lg text-bone">{value}</span>
             </>
           );
           return (

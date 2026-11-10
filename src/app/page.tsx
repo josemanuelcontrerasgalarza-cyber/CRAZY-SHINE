@@ -8,6 +8,9 @@ import { Services } from "@/components/sections/Services";
 import { Perks } from "@/components/sections/Perks";
 import { Garage } from "@/components/sections/Garage";
 import { Essence } from "@/components/sections/Essence";
+import { Process } from "@/components/sections/Process";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { CursorLabel } from "@/components/CursorLabel";
 import { BeforeAfter } from "@/components/sections/BeforeAfter";
 import { Booking } from "@/components/sections/Booking";
 import { Contact } from "@/components/sections/Contact";
@@ -21,6 +24,7 @@ export default function Home() {
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
+    telephone: `+${siteConfig.whatsapp.number}`,
     ...(siteConfig.location.label ? { address: siteConfig.location.label } : {}),
     ...(siteConfig.instagram.url ? { sameAs: [siteConfig.instagram.url] } : {}),
     hasOfferCatalog: {
@@ -36,6 +40,8 @@ export default function Home() {
         Saltar al contenido
       </a>
       <SmoothScroll />
+      <ScrollProgress />
+      <CursorLabel />
       <Navbar />
       <main id="contenido">
         <Hero />
@@ -45,6 +51,7 @@ export default function Home() {
         <Garage />
         <Marquee variant="band" />
         <Essence />
+        <Process />
         <BeforeAfter />
         <Booking />
         <Contact />

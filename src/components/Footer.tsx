@@ -24,7 +24,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="shine group mt-10 inline-flex items-center gap-3 bg-crazy px-6 py-4 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:bg-bone"
             >
-              <WhatsAppIcon className="h-4 w-4" /> Agenda por WhatsApp
+              <WhatsAppIcon className="h-4 w-4" /> {siteConfig.whatsapp.display}
               <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
             </a>
           </div>

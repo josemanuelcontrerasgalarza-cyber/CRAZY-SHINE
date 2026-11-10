@@ -14,6 +14,22 @@ const ease = [0.16, 1, 0.3, 1] as const;
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
+
+  // Resalta en la navegación la sección que se está viendo.
+  useEffect(() => {
+    const sections = navLinks.map((l) => document.querySelector(l.href)).filter((el): el is Element => Boolean(el));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -57,10 +73,19 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="group relative text-[0.72rem] font-medium uppercase tracking-[0.22em] text-bone/75 transition-colors hover:text-bone"
+                aria-current={active === link.href ? "true" : undefined}
+                className={clsx(
+                  "group relative text-[0.72rem] font-medium uppercase tracking-[0.22em] transition-colors hover:text-bone",
+                  active === link.href ? "text-bone" : "text-bone/70",
+                )}
               >
                 {link.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-crazy transition-transform duration-500 ease-[var(--ease-cinematic)] group-hover:scale-x-100" />
+                <span
+                  className={clsx(
+                    "absolute -bottom-1.5 left-0 h-px w-full origin-left bg-crazy transition-transform duration-500 ease-[var(--ease-cinematic)] group-hover:scale-x-100",
+                    active === link.href ? "scale-x-100" : "scale-x-0",
+                  )}
+                />
               </a>
             </li>
           ))}

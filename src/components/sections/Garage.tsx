@@ -62,6 +62,7 @@ export function Garage() {
               href={whatsappLink("Hola Crazy Shine, quiero agendar un servicio para mi vehículo.")}
               target="_blank"
               rel="noopener noreferrer"
+              data-cursor="Agendar"
               className="shine group flex aspect-[2/1] h-full flex-col justify-between bg-crazy p-6 text-ink lg:aspect-auto"
             >
               <span className="label">Tu carro</span>

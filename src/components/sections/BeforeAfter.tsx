@@ -19,7 +19,7 @@ export function BeforeAfter() {
       <div className="container-x">
         <div className="mb-14 grid gap-10 lg:mb-20 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <p className="label mb-8 text-metal"><span className="text-crazy">(04)</span> — Antes y después</p>
+            <p className="label mb-8 text-metal"><span className="text-crazy">(05)</span> — Antes y después</p>
             <MaskedHeadline
               id="ba-title"
               className="display text-[clamp(3.2rem,10vw,9.5rem)] text-bone"
@@ -113,6 +113,7 @@ function CompareSlider({ before, after, title }: { before: (typeof transformatio
       ref={ref}
       className={clsx("relative aspect-[4/5] w-full select-none overflow-hidden bg-graphite sm:aspect-[16/9]", dragging ? "cursor-grabbing" : "cursor-ew-resize")}
       style={{ touchAction: "pan-y" }}
+      data-cursor="Arrastra"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={stop}

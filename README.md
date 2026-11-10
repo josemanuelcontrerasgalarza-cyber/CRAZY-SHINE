@@ -17,12 +17,12 @@ npm run build && npm start
 - Recursos editoriales: titulares sólido + contorno, barra de anuncios, marquees infinitos (contorno y cinta cromada), palabras gigantes de fondo, etiquetas mono, botones entre corchetes con barrido de brillo.
 
 ## Secciones
-Hero (Mustang GT protagonista) → Marquee → Servicios (grilla asimétrica, palabra de identidad por servicio) → Beneficios → Garage (grilla tipo campaña) → Cinta cromada → Nuestra esencia → Antes y después (slider) → Reserva (formulario + Neon) → Contacto → Footer.
+Hero (Mustang GT protagonista) → Marquee → Servicios (grilla asimétrica, palabra de identidad por servicio) → Beneficios → Garage (grilla tipo campaña) → Cinta cromada → Nuestra esencia → El proceso (4 pasos) → Antes y después (slider) → Reserva (formulario + Neon) → Contacto → Footer.
 
 ## Variables de entorno
 | Variable | Uso |
 | --- | --- |
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Número en formato internacional, solo dígitos (p. ej. 573001234567). Sin él, los botones abren WhatsApp con el mensaje escrito para elegir contacto. |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Opcional. Número en formato internacional, solo dígitos. Por defecto `573219518808` (definido en `src/config/site.ts`). |
 | `DATABASE_URL` | Cadena de conexión de **Neon**. Guarda cada solicitud del formulario en la tabla `bookings` (`db/schema.sql`). Sin ella, el formulario igual funciona y pasa a WhatsApp. |
 | `NEXT_PUBLIC_SITE_URL` | URL pública para SEO y sitemap. |
 | `NEXT_PUBLIC_INSTAGRAM_URL` / `_HANDLE` | Instagram en contacto y footer. |

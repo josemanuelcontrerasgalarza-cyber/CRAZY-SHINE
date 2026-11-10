@@ -40,15 +40,31 @@ export function Services() {
               ]}
             />
           </div>
-          <a
-            href={whatsappLink("Hola Crazy Shine, quiero una cotización para mi vehículo.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="label group inline-flex items-center gap-3 text-bone transition-colors hover:text-silver"
-          >
-            Cotiza por WhatsApp
-            <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
-          </a>
+          <div className="w-full max-w-md lg:pb-3">
+            <p className="leading-relaxed text-metal">
+              Del lavado de mantenimiento a la corrección de pintura y el polarizado: elige lo que tu carro necesita o
+              déjanos asesorarte.
+            </p>
+            <ol className="mt-6 grid grid-cols-2 gap-x-6 border-t border-bone/10 pt-5">
+              {services.map((s) => (
+                <li key={s.id}>
+                  <a href={`#${s.id}`} className="group flex items-baseline gap-2.5 py-1.5 text-sm text-bone/75 transition-colors hover:text-bone">
+                    <span className="font-mono text-[0.62rem] text-crazy">{s.number}</span>
+                    <span className="border-b border-transparent transition-colors group-hover:border-crazy">{s.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+            <a
+              href={whatsappLink("Hola Crazy Shine, quiero una cotización para mi vehículo.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label group mt-6 inline-flex items-center gap-3 text-bone transition-colors hover:text-crazy"
+            >
+              Cotiza por WhatsApp
+              <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+            </a>
+          </div>
         </div>
 
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-12">
@@ -56,7 +72,7 @@ export function Services() {
             <motion.li
               key={service.id}
               id={service.id}
-              className={clsx(layout[i], (i === 0 || i === 5 || i === 6) && "sm:col-span-2")}
+              className={clsx("scroll-mt-28", layout[i], (i === 0 || i === 5 || i === 6) && "sm:col-span-2")}
               initial={{ opacity: 0, y: 48 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -8% 0px" }}
@@ -66,6 +82,7 @@ export function Services() {
                 href={whatsappLink(serviceMessage(service.name))}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-cursor="Cotizar"
                 className="group relative block aspect-[4/5] h-full overflow-hidden bg-graphite sm:aspect-[4/3] lg:aspect-auto"
               >
                 <motion.div
@@ -85,7 +102,7 @@ export function Services() {
                 {/* Palabra de identidad */}
                 <span
                   aria-hidden="true"
-                  className="display text-outline pointer-events-none absolute -right-2 top-14 select-none text-[clamp(4rem,9vw,9.5rem)] opacity-50 transition-all duration-1000 ease-[var(--ease-cinematic)] group-hover:-translate-x-4 group-hover:opacity-90"
+                  className="display text-outline pointer-events-none absolute -right-2 top-14 select-none text-[clamp(4rem,9vw,9.5rem)] opacity-35 transition-all duration-1000 ease-[var(--ease-cinematic)] group-hover:-translate-x-4 group-hover:opacity-90"
                 >
                   {service.keyword}
                 </span>

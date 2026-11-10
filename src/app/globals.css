@@ -43,6 +43,10 @@ html.lenis body {
   scroll-behavior: auto !important;
 }
 
+p {
+  text-wrap-style: pretty;
+}
+
 body {
   background: var(--color-ink);
   color: var(--color-bone);
@@ -73,6 +77,7 @@ body {
     font-weight: 400;
     text-transform: uppercase;
     line-height: 0.9;
+    text-wrap-style: balance;
   }
   .text-outline {
     color: transparent;

@@ -28,7 +28,7 @@ export function Booking() {
     <section id="reserva" className="relative border-t border-bone/[0.07] bg-ink py-28 sm:py-40" aria-labelledby="booking-title">
       <div className="container-x grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <p className="label mb-8 text-metal"><span className="text-crazy">(05)</span> — Reserva</p>
+          <p className="label mb-8 text-metal"><span className="text-crazy">(06)</span> — Reserva</p>
           <MaskedHeadline
             id="booking-title"
             className="display text-[clamp(3.4rem,8vw,7.5rem)] text-bone"
@@ -77,7 +77,7 @@ export function Booking() {
               </a>
             </div>
           ) : (
-            <form action={action} noValidate className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+            <form action={action} noValidate className="grid gap-x-8 gap-y-10 border border-bone/10 bg-graphite p-6 sm:grid-cols-2 sm:p-10">
               <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
               <Field label="Nombre" error={err.name} htmlFor="b-name">

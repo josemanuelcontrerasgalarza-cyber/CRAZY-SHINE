@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { heroVisual } from "@/content/media";
-import { whatsappLink } from "@/config/site";
+import { siteConfig, whatsappLink } from "@/config/site";
 import { Media } from "../ui/Media";
 import { MaskedHeadline } from "../ui/Reveal";
 import { Cta } from "../ui/Cta";
@@ -125,7 +125,14 @@ export function Hero() {
             </span>
             Desliza para descubrir
           </a>
-          <p className="label hidden text-bone/55 sm:block">N.º 01 — Cuidado automotriz</p>
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="label flex items-center gap-2.5 text-bone/65 transition-colors hover:text-bone"
+          >
+            <span className="hidden sm:inline">WhatsApp —</span> {siteConfig.whatsapp.display}
+          </a>
         </div>
       </div>
     </section>
